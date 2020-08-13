@@ -1,0 +1,34 @@
+@@ -0,0 +1,33 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+
+
+options = Options()
+options.add_argument("--window-size=1820,980")
+driver = webdriver.Chrome(options=options)
+wait = WebDriverWait(driver, 10)
+
+#opens chrome
+driver.get('https://www.youtube.com')
+driver.implicitly_wait(10)
+
+# identify searchbox
+searchbox = driver.find_element_by_xpath('//*[@id="search"]')
+
+#waiting to type in the searchbox 
+searchbox = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="search"]')))
+searchbox.send_keys('pomahc')
+
+#press search button
+searchButton = driver.find_element_by_xpath('//*[@id="search-icon-legacy"]')
+searchButton.click()
+
+
+# selects & plays vid
+selectVid = driver.find_element_by_xpath('//*[@id="video-title"]/yt-formatted-string')
+selectVid.click()
+x
